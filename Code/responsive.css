@@ -1,0 +1,725 @@
+
+
+
+@media (max-width: 1200px) {
+
+#head > .container > .row > .col-md-12 .nav a{
+	padding-bottom: 10px;
+	display: inline-block;
+	padding-top: 10px;
+}
+
+.right{
+      margin-left: 0%;
+}
+
+.cma1, .cma2{
+  width: 30%;
+}
+
+img{
+  height: 1%;
+}
+
+/*_________PAGE REFERENCES__________*/
+
+
+.imgs{
+	display: none;
+	}
+.ico{
+	border: none !important;
+}
+
+#ico1, #ico2, #ico3, #ico4, #ico5, #ico6, #ico7, #ico8, #ico9, #ico10{
+	  margin-left: 18%;
+}
+#ico11, #ico12, #ico13, #ico14, #ico15, #ico16, #ico17, #ico18, #ico19, #ico20{
+	  margin-right: 18%;
+}
+.prem, .deux{
+	width:42%;
+	margin-left: 7%;
+}
+.ico:hover{
+  cursor: default;
+}
+#md3 .col-md-12{
+display: none;
+
+}
+}
+
+
+@media (max-width: 991px) {
+	
+/*_________PAGE ACCUEIL + HEADER/FOOTER__________*/
+
+#actu{
+	display: none;
+}
+
+	#photo1{
+  width: 45%;
+  margin-top: 50px;
+  margin-left: 20%;
+  }
+
+  .mrg-left-20{
+  	margin-left: 20%;
+  }
+
+#photo3, #photo4{
+	width: 40%;
+	margin-left: 30%;
+  margin-top: 10%;
+}
+
+.left30{
+	margin-left: 30%;
+}
+
+.right30{
+	margin-right: 30%;
+}
+
+#head > .container > .row > .col-md-12 .nav a{
+  margin-left: -3%;
+  margin-right: -3%;
+}
+
+.right{
+    margin-left: 20%;
+}
+
+
+
+
+/*____________PAGE FORMATIONS_____________*/
+
+#photo5{
+  width: 33%;
+  margin-left: 0%;
+  margin-top: 0%;
+}
+
+#photo5bis{
+  width: 33%;
+  margin-left: 0%;
+    margin-top: 5%;
+    display: block;
+}
+#offres a{
+	width: 70%;
+}
+
+#titre {
+  margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#offres a{
+	display: inline-block;
+  	margin-left: 0%;
+}
+
+.droite{
+	margin-left: 30%; 
+    margin-top: -60%; 
+}
+
+.galerie{
+width: 40%;
+}
+
+#textoffreshaut{
+    margin-left: 40%;
+    margin-top: -60%;
+}
+
+#textoffresbas{
+
+}
+
+.TOE{
+  width: 30%;
+  margin-top: 5%;
+}
+
+/*____________PAGE E-LEARNING_____________*/
+
+#pagelearning #content > .container > .row #actu{
+	width: 30%;
+	margin-top: 5%;
+}
+
+#skype{
+	margin-top: 5%;
+  	margin-left: 41%;
+}
+
+.left302{
+	margin-left: 40%;
+}
+
+/*_________PAGE REFERENCES__________*/
+
+#ico1, #ico2, #ico3, #ico4, #ico5, #ico6, #ico7, #ico8, #ico9, #ico10{
+	  margin-left: 18%;
+}
+#ico11, #ico12, #ico13, #ico14, #ico15, #ico16, #ico17, #ico18, #ico19, #ico20{
+	  margin-right: 18%;
+}
+.prem{
+	width: 70%;
+	margin-left: 10%;
+}
+.deux{
+	width: 70%;
+	margin-left: 21%;
+}
+
+.ref80{
+	width: 20%;
+}
+
+.ref801{
+  width: 15%;
+}
+
+#pagereferences #content > .container > .row #ref{
+	width: 20%;
+}
+
+#pagereferences #content > .container > .row #actu{
+  width: 50%;
+  margin-top: 5%;
+  margin-left: 25%;
+}
+
+
+/*_________PAGE CONTACT__________*/
+
+.refphoto{
+  width: 25%;
+}
+
+
+.left38{
+margin-left: 7%;
+    width: 90%;
+    margin-top: 0%;
+}
+
+.left40{
+    margin-left: 30%;
+}
+
+.mont{
+    margin-top: -17%;
+}
+
+.quest{
+  display: inherit;
+}
+
+/*____________PAGE TARIFS_____________*/
+
+#pagetarifs #content > .container > .row #actu{
+	width: 30%;
+	margin-top: 5%;
+}
+#textarifs{
+	  margin-left: 30%;
+  margin-top: -59%;
+}
+
+/*____________PAGE FAQ_____________*/
+
+#pagefaq #content > .container > .row #actu{
+width: 30%;
+	margin-top: 5%;
+
+}
+
+#textfaq{
+  margin-left: 0%;
+margin-top: 0%;
+
+}
+
+
+
+}
+
+@media (max-width: 730px) {
+#pageformation > #content > .container > .row .col-md-4{
+  margin-left: 15%;
+  margin-top: 5%;
+  width: 70%;
+}
+
+.nav{     display: none !important;}
+.slicknav_menu {
+  display:block;
+}
+
+#pageformation #content > .container > .row .col-md-4 a{
+padding : 15px 15px 15px 15px ;
+  
+}
+
+@media (max-width: 720px) {
+
+/*_________PAGE ACCUEIL + HEADER/FOOTER__________*/
+
+
+#photo3{
+	width: 50%;
+	margin-left: 20%;
+}
+
+.left30{
+	margin-left: 20%;
+}
+
+/*_________PAGE E-LEARNING__________*/
+
+#pagelearning #content > .container > .row #actu{
+	width: 30%;
+	margin-top: 5%;
+}
+
+
+/*_________PAGE CONTACT__________*/
+
+.map1{
+	display: none;
+}
+
+.refphoto{
+  width: 32%;
+}
+
+.map2{
+	display: inline;
+	margin-left: 10%;
+}
+
+
+.left38{
+ 	margin-left: 5%;
+    width: 65%;
+    margin-top: 5%;
+
+}
+
+.left40{
+    margin-left: 26%;
+}
+
+.mont{
+    margin-top: -16%;
+}
+
+}
+@media (max-width: 648px) {
+
+
+}
+
+
+@media (max-width: 629px) {
+
+/*_________PAGE ACCUEIL + HEADER/FOOTER__________*/
+
+
+#photo3{
+	width: 60%;
+	margin-left: 10%;
+}
+
+.left30{
+	margin-left: 10%;
+}
+
+.center{
+	text-align: center;
+}
+
+.cma1{
+margin-left: 2%;
+}
+
+
+
+
+
+
+/*____________PAGE FORMATIONS_____________*/
+#pageformation > #content > .container > .row .col-md-4{
+  margin-left: 15%;
+  display: inherit;
+  margin-top: 2%;
+  width: 70%;
+
+}
+.hr{
+	margin-top: 10%;
+}
+
+
+
+/*_________PAGE E-LEARNING__________*/
+
+.left302{
+	margin-left: 20%;
+}
+
+#skype{
+	margin-top: 5%;
+  	margin-left: 21%;
+}
+
+
+/*_________PAGE REFERENCES__________*/
+
+
+#ico1, #ico2, #ico3, #ico4, #ico5, #ico6, #ico7, #ico8, #ico9, #ico10{
+	  margin-left: 10%;
+}
+#ico11, #ico12, #ico13, #ico14, #ico15, #ico16, #ico17, #ico18, #ico19, #ico20{
+	  margin-right: 10%;
+}
+.prem{
+	  width: 70%;
+ 	 margin-left: 25%;
+}
+.deux{
+	  width: 70%;
+  margin-left: 30%;
+}
+
+.ref80{
+	width: 20%;
+}
+#pagereferences #content > .container > .row #ref{
+	width: 20%;
+}
+
+/*_________PAGE CONTACT__________*/
+
+
+#pagecontact #content > .container > .row #actu{
+width: 70%;
+  margin-top: 5%;
+  margin-left: 10%;
+}
+
+
+.left38{
+    margin-left: 8%;
+    width: 65%;
+    margin-top: 3%;
+
+}
+
+.left40{
+    margin-left: 29%;
+
+}
+
+.mont{
+    margin-top: -16%;
+}
+
+
+/*____________PAGE TARIFS_____________*/
+
+#pagetarifs #content > .container > .row #actu{
+  width: 70%;
+  margin-top: 5%;
+  margin-left: 15%;
+}
+#textarifs{
+	  margin-left: 0%;
+  margin-top: 10%;
+}
+
+/*____________PAGE FAQ_____________*/
+
+#textfaq{
+  margin-left: 0%;
+  margin-top: 0%;
+  margin-top: 10%;
+}
+#pagefaq #content > .container > .row #actu{
+width: 70%;
+margin-left: 15%;
+}
+
+.questions{
+	margin-top: 35px;
+}
+
+}
+
+
+
+@media (max-width: 530px) {
+
+/*____________PAGE FORMATIONS_____________*/
+
+
+#offres a{
+margin-left: 14%;
+  display: inherit;
+  margin-top: 1%;
+}
+.hr{
+	margin-top: 0px;
+}
+
+#photo5{
+	margin-left: 0%;
+}
+
+
+#offres a{
+    padding: 5px 20px 5px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+#textoffreshaut{
+	  margin-left: 0;
+  margin-top: 5px;
+}
+.droite{
+	margin-left:0%; 
+    margin-top: 0%; 
+}
+
+#pageformation #actu{
+	width: 100%;
+}
+
+.galerie{	
+width: 70%;
+margin-left: 15%;
+}
+
+/*_________PAGE E-LEARNING__________*/
+
+#pagelearning #content > .container > .row #actu{
+	width: 80%;
+	margin-top: 5%;
+	margin-left: 7%;
+}
+
+
+/*_________PAGE Formule mixte_________*/
+
+#pageFormule img{
+  width: 95%;
+}
+
+
+/*_________PAGE DEMARCHE QUALITE_________*/
+
+#pageQualite img{
+  width: 100%;
+}
+
+
+/*_________PAGE REFERENCES__________*/
+
+
+#pagereferences #content > .container > .row #actu{
+  width: 70%;
+  margin-top: 5%;
+  margin-left: 10%;
+}
+
+/*_________PAGE CONTACT_________*/
+
+
+.map2{
+	margin-left: 0%;
+}
+
+}
+
+@media (max-width: 450px) {
+
+/*_________PAGE CONTACT__________*/
+
+.map2{
+	display: none;
+}
+.map3{
+	display: inline;
+	margin-left: 10%;
+}
+
+}
+
+@media (max-width: 443px) {
+
+/*_________PAGE ACCUEIL + HEADER/FOOTER__________*/
+
+.photogauche{
+  margin-left: 0px;
+}
+	#photo1{
+  width: 100%;
+  margin-top: 20px;
+  margin-left: 0px;
+  }
+  .mrg-left-20{
+  	margin-left: 0px;
+  }
+
+  #photo3{
+	width: 80%;
+	margin-left: 5%;
+}
+
+.left30{
+	margin-left: 5%;
+}
+
+.right{
+      margin-left: 0%;
+}
+
+/*____________PAGE FORMATIONS_____________*/
+
+#photo5{
+width: 100px;
+}
+
+#pageformation #content > .container > .row .col-md-4 a{
+padding : 10px 10px 10px 10px ;
+}
+
+#pageformation #content > .container > .row .col-md-4 {
+margin-left: 5%;
+  display: inherit;
+  margin-top: 1%;
+  width: 90%;
+}
+
+.cma2{
+margin-left: 2%;
+}
+
+/*_________PAGE E-LEARNING__________*/
+
+.left302 img{
+	margin-left: -11%;
+	width: 75%;
+}
+
+#skype{
+	margin-top: 5%;
+  	margin-left: 12%;
+	width: 60%;
+}
+
+/*_________PAGE REFERENCES__________*/
+
+
+.prem{
+	  width: 70%;
+ 	 margin-left: 20%;
+}
+.deux{
+	  width: 70%;
+  margin-left: 25%;
+}
+
+.ref80{
+	width: 35%;
+}
+#pagereferences #content > .container > .row #ref{
+	width: 35%;
+}
+
+/*____________PAGE FAQ_____________*/
+
+#pagefaq #content > .container > .row #actu{
+width: 70%;
+margin-left: 10%;
+}
+
+/*____________PAGE CONTACT_____________*/
+
+
+.left38{
+    margin-left: 5%;
+    width: 70%;
+    margin-top: 3%;
+}
+
+
+.refphoto{
+  width: 35%;
+}
+
+
+.left40{
+    margin-left: 37%;
+
+}
+
+.mont{
+    margin-top: -27%;
+}
+
+}  
+
+@media (max-width: 385px) {
+/*_________PAGE CONTACT__________*/
+
+
+.map3{
+	margin-left: 0%;
+}
+
+.left38{
+    margin-left: 0%;
+    width: 80%;
+    margin-top: 3%;
+
+}
+
+.left40{
+    margin-left: 2%;
+
+}
+
+.mont{
+margin-top: 4%;
+}
+
+}
+
+@media (max-width: 385px) {
+.right30{
+	margin-right: 10%;
+}
+#photo4{
+	width: 60%;
+}
+#head > .container > .row > .col-md-12 .nav a{
+  font-size: 1.6em;
+  margin-top: 1%;
+}
+
+#message{
+	width: 87%;
+}
+
+}
