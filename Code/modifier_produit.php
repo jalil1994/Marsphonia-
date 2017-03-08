@@ -38,23 +38,45 @@ if (! (isset($_SESSION[''])))
 		</header>
 
 
-			<aside>
+			 <aside>
+            <div id="sidebar"  class="nav-collapse ">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu"> 
 
-				 <li class="sub-menu">
-                     <a href="javascript:;" class="">
-                         
+                  <li class="sub-menu">
+                       <a href="javascript:;" class="">
                           <span>Gérer les produits </span>
                           <span class="menu-arrow arrow_carrot-right"></span>
-                     </a>
-					 <ul class="sub">
-                          <li><a class="" href="ajouter_produit.php">Ajouter</a></li>
-                          <li><a class="" href="modifier_produit.php">Modifier</a></li>
-                          <li><a class="" href="supprimer_produit.php">Supprimer </a></li>
-                          <li><a class="" href="consulter_produit.php">la liste des produits</a></li>
-                 	</ul>
-                 </li>
-      		</aside>
+                       </a>
+                          <ul class="sub">
+                            <li><a class="" href="ajouter_produit.php">Ajouter</a></li>
+                            <li><a class="" href="modifier_produit.php">Modifier</a></li>
+                            <li><a class="" href="supprimer_produit.php">Supprimer </a></li>
+                            <li><a class="" href="consulter_produit.php">la liste des produits</a></li>
+                          </ul>
+                  </li>
 
+                  <li class="sub-menu">                     
+                      <a class="" href="javascript:;">
+                          <span>Gestion des bons</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+                         <ul class="sub">
+                            <li><a class="" href="bon_cmd.php">bon de commande</a></li>
+                            <li><a class="" href="bon_liv.php">bon de livraison</a></li>
+                         </ul>
+                  </li>
+                             
+                  <li class="sub-menu">
+                      <a href="consulter_commande.php" class="">
+                        <span >Consulter les commandes</span>
+                      </a>
+                  </li>
+                  
+              </ul>
+              <!-- sidebar menu end-->
+          </div>
+        </aside>
 
  <!--main content start-->
       <section >
