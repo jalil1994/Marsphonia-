@@ -1,0 +1,476 @@
+
+
+/*_________PAGE ACCUEIL + HEADER/FOOTER__________*/
+
+#page{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.slicknav_menu {
+  display:none;
+}
+
+#head > div > div > div > a > p{
+  font-size: 5em;
+  text-align: center;
+}
+
+.nav{
+  width: 100%;
+  padding : 15px 15px 15px 15px ;
+  border-radius: 5px;
+  margin-top: 50px;
+  margin-bottom: 40px;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#87e0fd+0,be2026+0,63140b+100 */
+background: #87e0fd; /* Old browsers */
+background: -moz-linear-gradient(top,  #87e0fd 0%, #be2026 0%, #63140b 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87e0fd), color-stop(0%,#be2026), color-stop(100%,#63140b)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #87e0fd 0%,#be2026 0%,#63140b 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #87e0fd 0%,#be2026 0%,#63140b 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #87e0fd 0%,#be2026 0%,#63140b 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #87e0fd 0%,#be2026 0%,#63140b 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e0fd', endColorstr='#63140b',GradientType=0 ); /* IE6-9 */
+  text-align: center;
+}
+
+.nav > a{
+  color : #FFFFFF;
+  font-size: 1.5em;
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
+.photogauche{
+  margin-left: 13%;
+}
+
+#photo1{
+  width: 80%;
+  margin-top: 50px;
+}
+
+.mrg-left-20{
+  margin-left: 20px;
+}
+
+hr{
+border-top: 2px solid #757575;
+}
+
+#photo3{
+  width: 100%;
+  margin-top: 70%;
+}
+
+.ftsize08{
+  font-size: 0.8em;
+
+}
+
+.red{
+  color : #9f0408;
+  margin-top: 15px;
+  text-align:right;
+}
+
+#photo4{
+  width: 100%;
+  margin-top: 15px;
+}
+
+.footer{
+  width: 100%;
+  height: 70px;
+  padding : 15px 15px 15px 15px ;
+  border-radius: 5px;
+  margin-top: 30px;
+  margin-bottom: 0px;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#87e0fd+0,be2026+0,63140b+100 */
+background: #87e0fd; /* Old browsers */
+background: -moz-linear-gradient(top,  #87e0fd 0%, #be2026 0%, #63140b 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87e0fd), color-stop(0%,#be2026), color-stop(100%,#63140b)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #87e0fd 0%,#be2026 0%,#63140b 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #87e0fd 0%,#be2026 0%,#63140b 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #87e0fd 0%,#be2026 0%,#63140b 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #87e0fd 0%,#be2026 0%,#63140b 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e0fd', endColorstr='#63140b',GradientType=0 ); /* IE6-9 */
+}
+
+.footer a{
+  color : #FFFFFF;
+}
+.footer p{
+  color : #FFFFFF;
+}
+
+p, a, li{
+  font-family: "Calibri Light", Serif;
+  font-size: 1.3em;
+}
+
+.right{
+    margin-left: 0%;
+}
+
+.accueil p{
+  font-size: 1.4em;
+}
+
+/*____________PAGE FORMATIONS_____________*/
+
+#offres{
+  text-align: center;
+}
+
+#offres a{
+  color : #9f0408;
+  font-size: 1.5em;
+padding : 20px 20px 20px 20px ; 
+}
+
+#offres a:hover{
+border : 2px solid #9f0408;
+text-decoration: none;
+}
+
+#photo5{
+  width: 65%;
+    margin-top: 15%;
+}
+
+#titre{
+  color : #9f0408;
+  font-size: 1.5em;
+  margin-top: 40px;
+}
+
+.red2{
+  color: #9f0408;
+  font-size: 1em;
+}
+
+.actu{
+  text-align: center;
+  font-size: 1.5em;
+}
+
+#img1{
+  margin-left: 27%;
+  width: 40%;
+}
+
+.galerie{
+  width:30%;
+  margin: 10px 10px 10px 10px ;
+  border : 4px solid rgba(117, 117, 117, 0); 
+}
+
+.galerie:hover{
+  border : 4px solid rgba(117, 117, 117, 0.6);
+}
+
+#proposition{
+  font-size: 1.5em;
+}
+
+.sousliste li{
+  font-size: 1em !important;
+}
+
+.imgAAL{
+  width: 100%;
+}
+
+.odyssee{
+  font-size: 1.1em;
+}
+
+#photo5bis{
+  width: 65%;
+  margin-left: 0%;
+  margin-top: 15%;
+}
+
+.TOE{
+  width: 50%;
+  margin-top: 20%;
+}
+
+
+/*____________PAGE E-LEARNING_____________*/
+
+
+#skype{
+margin-top: 50px;
+margin-left: 150px;
+}
+
+#pagelearning #content > .container > .row #actu{
+  margin-top: -42px;
+}
+
+/*____________PAGE REFERENCES_____________*/
+
+.size19{
+  font-size: 1.9em;
+}
+
+#pagereferences #content > .container > .row #ref{
+  width: 100%;
+  margin-top: 10px;
+}
+
+.red3{
+  color: #9f0408;
+  font-size: 1.5em;
+}
+
+
+.references{
+  font-size: 1em;
+  margin-bottom: 45px;
+}
+
+.ref80{
+  width: 80%;
+  margin-left: 15px;
+}
+
+.ref801{
+  width: 60%;
+  margin-left: 33px;
+}
+
+.top20{
+  margin-top: 20px; 
+}
+
+.exref{
+  margin-top: 25px;
+  font-size: 2em;
+  text-align: center;
+}
+
+
+.imgs{
+ position: relative;
+}
+
+.ico{
+width: 30%;
+display: inline;
+margin: 5px 5px 5px 5px ;
+}
+
+#imgactu{
+    height: 1%;
+    width: 100%;
+}
+
+#img1{
+ width: 30%; 
+ margin: 5px 5px 5px 5px ;
+ position: absolute;
+  opacity: 0;
+  margin: 26% 0% 0% 26%;
+}
+
+#img2{
+  position: absolute;
+  opacity: 0;
+    margin: 22% 0% 0% 0%;
+}
+#img3{
+  position: absolute;
+  opacity: 0;
+  margin: 33% 0% 0% 25%;
+
+}
+#img4{
+  position: absolute;
+  opacity: 0;
+  margin: 22% 0% 0% 22%;
+
+}
+#img5{
+  position: absolute;
+  opacity: 0;
+  margin: 13% 0% 0% 0%;
+
+}
+#img6{
+  position: absolute;
+  opacity: 0;
+  margin: 22% 0% 0% 22%;
+
+}
+#img7{
+  position: absolute;
+  opacity: 0;
+  margin: 21% 0% 0% 19%;
+
+}
+#img8{
+  position: absolute;
+  opacity: 0;
+  margin: 25% 0% 0% 10%;
+
+}
+#img9{
+  position: absolute;
+  opacity: 0;
+  margin: 34% 0% 0% 40%;
+
+}
+#img10{
+  position: absolute;
+  opacity: 0;
+  margin: 32% 0% 0% 32%;
+
+}
+#img11{
+  position: absolute;
+  opacity: 0;
+  margin: 31% 0% 0% 20%;
+
+}
+#img12{
+  position: absolute;
+  opacity: 0;
+  width: 60%;
+  margin: 10% 0% 0% 10%;
+
+}
+#img13{
+  position: absolute;
+  opacity: 0;
+  margin: 16% 0% 0% 0%;
+
+}
+#img14{
+  position: absolute;
+  opacity: 0;
+  margin: 22% 0% 0% 22%;
+
+}
+#img15{
+  position: absolute;
+  opacity: 0;
+  margin: 22% 0% 0% 22%;
+
+}
+#img16{
+  position: absolute;
+  opacity: 0;
+  margin: 22% 0% 0% 17%;
+
+}
+#img17{
+  position: absolute;
+  opacity: 0;
+  margin: 7% 0% 0% 17%;
+
+}
+#img18{
+  position: absolute;
+  opacity: 0;
+  margin: 34% 0% 0% 36%;
+
+}
+#img19{
+  position: absolute;
+  opacity: 0;
+  margin: 25% 0% 0% 25%;
+
+}
+#img20{
+  position: absolute;
+  opacity: 0;
+  margin: 32% 0% 0% 25%;
+}
+
+.ico:hover{
+  cursor: pointer;
+}
+
+
+
+
+/*____________PAGE CONTACT_____________*/
+
+.refphoto{
+  width: 100%;
+}
+
+.liens{
+  width: 10%;
+}
+
+
+
+
+/*____________PAGE FAQ_____________*/
+
+.questions{
+  color : #9f0408;
+}
+
+/*____________PAGE PDS_____________*/
+
+#pagePDS #content > .container > .row ul {
+  margin-left: 25px;
+}
+
+
+/*____________PAGE FORMULAIRE_____________*/
+
+.titre2 {
+text-align: center;
+font-size: 2em;
+margin-top: 15px;
+}
+
+.etoile{
+  color: #9f0408;
+}
+
+.btnverif{
+  max-width: 60px;
+  padding : 2px 2px 2px 2px;
+  border : 1px solid black;
+}
+
+.btnverif:hover{
+  cursor: pointer;
+}
+
+#envoyer{
+  cursor: pointer ;
+}
+
+#hr{
+  display: inherit;
+}
+
+.map2, .map3{
+  display: none;
+}
+
+.encours{
+  border : 2px solid #9f0408;
+  text-decoration: none;
+}
+
+.messageErreur{
+  margin-left: 10%;
+  font-size: 1.5em;
+}
+
+.pasencours{
+  border : 2px solid transparent;
+}
+
+.quest{
+  display: none;
+}
