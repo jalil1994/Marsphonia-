@@ -5,6 +5,7 @@
             <li><a href="index.php?nav=MofiferTel">Modifier telephone</a></li>
             <li><a href="index.php?nav=SupprimerTel">Supprimer telephone</a></li>
             <li><a href="index.php?nav=ConsulterTel">Consulter telephone</a></li>
+            <li><a href="index.php?nav=ConsulterCommande">Consulter les commandes</a></li>            
         </ul>
 	<hr>
 </div>

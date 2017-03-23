@@ -1,4 +1,4 @@
-<div class="col-md-3" id="actu">
+<div class="col-md-12" id="actu">
 	<hr/>
 	<p>smartphone en promos / mm gamme de prix</p>
 	<div id="hr">
