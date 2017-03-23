@@ -51,6 +51,32 @@ function AjoutTel($nom, $ecran, $couleur, $marque, $prix, $fonction, $quantite, 
         return $donnees;
 }
 
+function ModifierTel($nom, $ecran, $couleur, $marque, $prix, $fonction, $quantite, $editionLimite, $date, $photo, $BDD){
+    
+        //recup nbmaxproduit+1
+        $rep = $BDD->query("select MAX(numProduit) from Produit");
+        $don = $rep->fetch();  
+        $numProduit = $don[0]++;
+        // gestion de l image
+        $rep2 = $BDD->query("select MAX(numProduit) from Produit");
+        $don2 = $rep2->fetch();  
+        $numImg = $don2[0]++;
+        $testImg = $BDD->query("UPDATE `images` SET idImage='$idImage',idProduit='$idProduit', LienImage='$LienImage' 
+            WHERE idImage = $idImage");
+         mysql_query($testImg) or die(mysql_error());
+
+        $repTestImg = $testImg->fetch();
+        
+        //Modification du produit
+        $reponse = $BDD->query("UPDATE `produit` SET nomProduit='$nom',numProduit='$numProduit', numImg='$numImg', 
+            Idcouleur='$couleur', Idmarque='$marque', Idecran='$ecran', editionLimite='$editionLimite', prixduproduit='$prix',
+             datesortie='$date', quantite='$quantite', foncTexte='$fonction' WHERE numProduit = $numProduit  ");
+        mysql_query($reponse) or die(mysql_error());
+        
+        $donnees = $reponse->fetch();             
+        return $donnees;
+}
+
 function inscrire($Nom,$Tel, $Prenom, $EtatCivil, $Mail, $MDP, $BDD){
         $req = $BDD->query("Select MAX(numClient) From client");
         $nbMaxClients = $req->fetch();
