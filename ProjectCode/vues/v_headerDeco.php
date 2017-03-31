@@ -12,8 +12,9 @@
 								<a href="index.php?nav=Accueil">Accueil </a>								
 								<a href="index.php?nav=Smartphones">Smartphones</a>
 								<a href="index.php?nav=Panier">Panier</a>
+                                                                <a href="index.php?nav=Wishlist">Wishlist</a>
                                                                 <a href="index.php?nav=Deconnexion">Deconnexion</a>
-								<a href="index.php?nav=FAQ">FAQ</a>
+								<a href="index.php?nav=Contact">Contact</a>
 							</div>
 						</div>	
 						</div>

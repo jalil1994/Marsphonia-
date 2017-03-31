@@ -1,4 +1,10 @@
 
+
+<?php
+if( isset($_SESSION['numClient'])){
+    if($_SESSION['numClient'] == 4){
+?>
+        
 		<div id="pageajoutTel">
 
 			<div id="content">
@@ -66,4 +72,14 @@
 				</div>
 			</div>	
 
-		</div>
+		</div>        
+        
+        
+<?php        
+    }else {
+        header('Location: index.php?nav=Accueil');            
+    }
+}else{
+        header('Location: index.php?nav=Accueil');            
+}
+?>

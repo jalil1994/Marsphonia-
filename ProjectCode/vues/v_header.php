@@ -14,7 +14,7 @@
 								<a href="index.php?nav=Panier">Panier</a>
 								<a href="index.php?nav=Connexion">Connexion</a>
 								<a href="index.php?nav=Inscription">Inscription</a>
-								<a href="index.php?nav=FAQ">FAQ</a>
+								<a href="index.php?nav=Contact">Contact</a>
 							</div>
 						</div>	
 						</div>

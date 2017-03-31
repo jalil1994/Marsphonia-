@@ -6,7 +6,7 @@
 
                                             <div id="offres">
 						<div class="col-md-4" >
-							<a href="index.php?nav=SmartphonesPlusVendus" class="pasencours" >Smartphones les plus vendus</a>
+							<a href="index.php?nav=SmartphonesPlusPopulaires" class="pasencours" >Smartphones les plus populaires</a>
 						</div>
 						<div class="col-md-4">
 							<a href="index.php?nav=SmartphonesMoinsChers" class="pasencours" >Smartphones les moins chers</a>

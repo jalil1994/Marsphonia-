@@ -94,4 +94,30 @@ function inscrire($Nom,$Tel, $Prenom, $EtatCivil, $Mail, $MDP, $BDD){
         return $donnees;
 }
         
+
+function RecupInfoTel($num, $BDD){
+        $reponse = $BDD->query("select nomProduit, Couleur, Marque, Ecran, editionLimite, prixduproduit, datesortie, quantite, foncTexte, lienImage from Produit join images on(numProduit = idProduit)where numProduit='$num';");
+        $donnees = $reponse->fetch();             
+        return $donnees;
+}
+
+function nbTel($BDD){
+    $reponse = $BDD->query("select count(numProduit) from produit;");
+    $donnees = $reponse->fetch();             
+    return $donnees;
+}
+
+function Tels($BDD){
+    $nbTel = nbTel($BDD);
     
+    for($i=0; $i<$nbTel[0]; $i++){
+        if($i==0){
+            $reponse = $BDD->query("select numProduit, nomProduit,Nombredevente, promo,  Couleur, Marque, Ecran, editionLimite, prixduproduit, datesortie, quantite, foncTexte from produit LIMIT 0,1;");
+            $infosTel[$i] = $reponse->fetch();  
+        } else {
+            $reponse = $BDD->query("select numProduit, nomProduit,Nombredevente, promo,  Couleur, Marque, Ecran, editionLimite, prixduproduit, datesortie, quantite, foncTexte from produit LIMIT $i,$i;");
+            $infosTel[$i] = $reponse->fetch();
+        }
+    }                
+    return $infosTel;
+}

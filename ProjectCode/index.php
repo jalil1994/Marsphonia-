@@ -81,8 +81,8 @@ switch($nav){
 		include("vues/v_FAQ.php");
                 break;
 	}   
-        case 'SmartphonesPlusVendus':{  
-		include("vues/v_SmartphonesPlusVendus.php");
+        case 'SmartphonesPlusPopulaires':{  
+		include("vues/v_SmartphonesPlusPopulaires.php");
                 break;
 	}
         case 'SmartphonesMoinsChers':{   
@@ -131,7 +131,20 @@ switch($nav){
         case 'ConsulterCommande':{   
 		include("vues/v_ConsulterCommande.php");
                 break;
-	}        
+	}   
+        case 'Wishlist':{   
+		include("vues/v_Wishlist.php");
+                break;
+	}  
+        case 'FicheTel':{
+            $tel=$_GET['IDTel'];
+		include("vues/v_FicheTel.php");
+                break;
+	}
+        case 'Contact':{   
+		include("vues/v_Contact.php");
+                break;
+	}         
 }
     include("vues/v_footer.php");	
 ?>

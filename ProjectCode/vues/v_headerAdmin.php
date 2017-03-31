@@ -13,7 +13,6 @@
 								<a href="index.php?nav=Smartphones">Smartphones</a>
 								<a href="index.php?nav=Admin">Admin</a>
                                                                 <a href="index.php?nav=Deconnexion">Deconnexion</a>
-								<a href="index.php?nav=FAQ">FAQ</a>
 							</div>
 						</div>	
 						</div>

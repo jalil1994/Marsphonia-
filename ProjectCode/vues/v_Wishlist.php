@@ -1,5 +1,5 @@
 
-		<div id="pagePanier">
+		<div id="pageWhishlist">
 			<div id="content">
 				<div class="container">
 					<div class="row">
@@ -10,9 +10,9 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <?php
-                                                    include('vues/v_PanierPerso.php');
+                                                    include('vues/v_WhishlistPerso.php');
                                                 }else{
-                                                    ?> <p>Veuillez vous connectez ou vous inscrire pour acceder a votre panier :</p> <?php
+                                                    ?> <p>Veuillez vous connectez ou vous inscrire pour acceder a votre Whishlist :</p> <?php
                                                     include("vues/v_Connexion.php");
                                                     ?>  <hr/> <?php
                                                     include("vues/v_Inscription.php");

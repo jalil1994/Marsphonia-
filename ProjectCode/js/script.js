@@ -1,57 +1,99 @@
-	
+$(function() {
+lancerbanniere();
 
-	function anim(idImg,idIco) {
+function lancerbanniere(){
 
+$( ".img1" ).animate({
+      opacity: 0,
+      } , {
+      duration : 1
+      })
+      $( ".img2" ).animate({
+      opacity: 0,
+      } , {
+      duration : 1
+      })
+      $( ".img3" ).animate({
+      opacity: 0,
+      } , {
+      duration : 1
+      })
 
-		
-		$('#img1, #img2, #img3, #img4, #img5, #img6, #img7, #img8, #img9, #img10, #img11, #img12, #img13, #img14, #img15, #img16, #img17, #img18, #img19, #img20').hide();
-		$('#ico1, #ico2, #ico3, #ico4, #ico5, #ico6, #ico7, #ico8, #ico9, #ico10, #ico11, #ico12, #ico13, #ico14, #ico15, #ico16, #ico17, #ico18, #ico19, #ico20').css('border', 'none');
+    //img1 + text1
+    $( ".img1" ).animate({
+      opacity: 1,
+      } , {
+      duration : 3000
+      })
 
-		$('#'+idImg).show();
+      $( ".img1" ).animate({
+      opacity: 1,
+      } , {
+      duration : 1000
+      })
 
-		$('#'+idIco).css('border', '4px solid rgba(117, 117, 117, 0.6)');
+      $( ".img1" ).animate({
+      opacity: 0,
+      } , {
+      duration : 3000
+      })
 
-		$('#'+idImg).animate({
-					opacity : 1 ,	
-				} , {
-					duration : 1000
-				});
+    // disp de img1
+    // laisse img2 a 0 pendant apparition et disp de img1
+    $( ".img2" ).animate({
+      opacity: 0,
+      } , {
+      duration : 7000
+      })
 
-		$('#'+idImg).delay(1000).animate({
-					opacity : 0 ,
-				} , {
-					duration : 1000
-				});
+    //  img2
+      $( ".img2" ).animate({
+      opacity: 1,
+      } , {
+      duration : 3000
+      })
 
-		setTimeout(function(){ $('#'+idIco).css('border', 'none');  }, 2800);
+      $( ".img2" ).animate({
+      opacity: 1,
+      } , {
+      duration : 1000
+      })
 
+      $( ".img2" ).animate({
+      opacity: 0,
+      } , {
+      duration : 3000
+      })
 
-		console.log("Id ico " +idIco);
-	}
+    // disp de img2 
+    // laisse img3 a 0 pendant apparition et disp de img1, text1 et img2
+    $( ".img3" ).animate({
+      opacity: 0,
+      } , {
+      duration : 14000
+      })
 
+    //  img3
+      $( ".img3" ).animate({
+      opacity: 1,
+      } , {
+      duration : 3000
+      })
 
-function auto(){
+      $( ".img3" ).animate({
+      opacity: 1,
+      } , {
+      duration : 1000
+      })
 
-		anim("img1","ico1");
-
-
-		var i = 2;
-		setInterval(function lancanim(){
-
-				if(i < 21){
-					anim("img"+i,"ico"+i);
-					i++;
-				} else {
-					i = 1;
-				}
-
-		}, 2800);
-		};
-	$(function(){
-
-		auto();
-
-		
-
-	});
-
+       $( ".img3" ).animate({
+       opacity: 0
+      }, {
+        duration: 3000,
+       
+        complete: function() {
+          lancerbanniere();
+        }
+      });
+}
+});
