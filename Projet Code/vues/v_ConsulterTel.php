@@ -33,6 +33,7 @@ if( isset($_SESSION['numClient'])){
       <th>Fonctionnalités</th>
       <th>Modifier</th>
       <th>Supprimer</th>
+      <th>Promo(%)</th>
     </tr>
     
 <?php   
@@ -55,6 +56,12 @@ while ($i<$nbTel[0]) {
       <td ><?php echo($infosTel[$i][11]);?></td>
       <td><a href="index.php?nav=ModifierTel&amp;IdTel=<?php echo($infosTel[$i][0]);?>">Modifier</a> </td>
       <td><a href="index.php?nav=SupprimerTel&amp;IdTel=<?php echo($infosTel[$i][0]);?>" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cet article ? '));"> Supprimer </a> </td>
+      <td>
+          <form method="post" id="FormAjoutTel" action="index.php?nav=AjoutPromo&amp;IdTel=<?php echo($infosTel[$i][0]);?>">
+            <input type="text" name="Promo" id="Promo" size="2" maxlength="99" placeholder="%">
+            <input type="submit" name="AjoutPromo" id="AjoutPromo" value="OK">
+          </form>	
+      </td>
     </tr>
       <?php $i++;
   } 

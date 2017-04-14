@@ -87,8 +87,8 @@ function inscrire($Nom,$Tel, $Prenom, $EtatCivil, $Mail, $MDP, $BDD){
             $EtatCivil = 0;
         }
         
-        $reponse = $BDD->query("INSERT INTO `client` (`emailClient`, `numClient`, `motdepasse`, `nomClient`, `prenomClient`, `etatCivile`, `num_Tel`, `Points`, `IdPanier`) VALUES
-            ('$Mail', '$nbMaxClients[0]', '$MDP', '$Nom', '$Prenom', '$EtatCivil', '$Tel', '0', NULL)");
+        $reponse = $BDD->query("INSERT INTO `client` (`emailClient`, `numClient`, `motdepasse`, `nomClient`, `prenomClient`, `etatCivile`, `num_Tel`, `Points`) VALUES
+            ('$Mail', '$nbMaxClients[0]', '$MDP', '$Nom', '$Prenom', '$EtatCivil', '$Tel', '0');");
         $donnees = $reponse->fetch();
         return $donnees;
 }
@@ -115,7 +115,7 @@ function Tels($BDD){
 }
 
 function RecupInfoTel($num, $BDD){
-        $reponse = $BDD->query("select nomProduit, Couleur, Marque, Ecran, editionLimite, prixduproduit, datesortie, quantite, foncTexte, lienImage, numProduit from Produit join images on(numProduit = idProduit)where numProduit='$num';");
+        $reponse = $BDD->query("select nomProduit, Couleur, Marque, Ecran, editionLimite, prixduproduit, datesortie, quantite, foncTexte, lienImage, numProduit, promo from Produit join images on(numProduit = idProduit)where numProduit='$num';");
         $donnees = $reponse->fetch();             
         return $donnees;
 }
@@ -133,4 +133,212 @@ function SupprimerTel($numTel, $BDD){
         $suppressionProduit[2] = $donneesTel;
 
         return $suppressionProduit;
+}
+
+function TelPlusVendus($BDD){
+        for($i=0; $i<3; $i++){
+            if($i == 0){
+                $reponse = $BDD->query("Select numProduit From produit order by NombredeVente DESC LIMIT 0, 1;");
+                $donnees[$i] = $reponse->fetch();  
+            } else {
+            $reponse = $BDD->query("Select numProduit From produit order by NombredeVente DESC LIMIT $i, $i;");
+            $donnees[$i] = $reponse->fetch(); 
+            }
+        }
+        return $donnees;
+}
+
+function TelMoinsChers($BDD){
+        for($i=0; $i<6; $i++){
+            if($i == 0){
+                $reponse = $BDD->query("Select numProduit From produit order by prixduproduit ASC LIMIT 0, 1;");
+                $donnees[$i] = $reponse->fetch();  
+            } else {
+            $reponse = $BDD->query("Select numProduit From produit order by prixduproduit ASC LIMIT $i, $i;");
+            $donnees[$i] = $reponse->fetch(); 
+            }
+        }
+        return $donnees;
+}
+
+function TelPromo($BDD){
+        $reponse = $BDD->query("Select count(numProduit) From produit where promo <>0;");
+        $nbTelPromos = $reponse->fetch();
+        for($i=0; $i<$nbTelPromos[0]; $i++){
+            if($i == 0){
+                $reponse = $BDD->query("Select numProduit From produit where promo <>0 order by promo DESC LIMIT 0, 1;");
+                $donnees[$i] = $reponse->fetch();  
+            } else {
+                $reponse = $BDD->query("Select numProduit From produit where promo <>0 order by promo DESC LIMIT $i, $i;");
+                $donnees[$i] = $reponse->fetch();  
+            }
+        }
+        return $donnees;
+}
+
+function AjoutPromo($numTel,$promo ,$BDD){
+    
+    if($promo==0){
+        $reponse = $BDD->query("Select prixduproduit, promo from produit where numProduit = '$numTel' ;");
+        $prixReduit = $reponse->fetch();
+        $coef = 1 - ($prixReduit[1] /100);
+        $prixBase = $prixReduit[0] / $coef;
+        $reponse = $BDD->query("UPDATE `produit` SET promo='$promo',prixduproduit='$prixBase'  where numProduit = '$numTel' ;");
+        $donnees = $reponse->fetch();
+    } else {
+        $reponse = $BDD->query("Select prixduproduit from produit where `numProduit` = '$numTel' ;");
+        $prixBase = $reponse->fetch();
+        
+        $reduction = ($prixBase[0] * $promo) /100;
+        $prixReduit = $prixBase[0] - $reduction;
+        
+        $reponse = $BDD->query("UPDATE `produit` SET promo='$promo', prixduproduit='$prixReduit'  where numProduit = '$numTel' ;");
+        $donnees = $reponse->fetch();
+    }
+        return $donnees;
+}
+
+function DerniersTel($BDD){
+        for($i=0; $i<6; $i++){
+            if($i == 0){
+                $reponse = $BDD->query("Select numProduit From produit order by datesortie desc LIMIT 0, 1;");
+                $donnees[$i] = $reponse->fetch();  
+            } else {
+            $reponse = $BDD->query("Select numProduit From produit order by datesortie desc LIMIT $i, $i;");
+            $donnees[$i] = $reponse->fetch(); 
+            }
+        }
+        return $donnees;
+}
+
+function VerifExistePanierClient($numClient, $BDD){
+        $reponse = $BDD->query("Select IdPanier From panier where numclient='$numClient';");
+        $donnees = $reponse->fetch();
+        return $donnees;
+}
+
+
+function CreerPanierClient($numClient, $BDD){
+        $req = $BDD->query("Select MAX(IdPanier) From panier");
+        $numPanier = $req->fetch();
+        $numPanier[0]++;
+        
+        $reponse = $BDD->query("INSERT INTO `panier` (`IdPanier`, `numclient`) VALUES
+            ('$numPanier[0]', '$numClient')");
+        $donnees = $reponse->fetch();
+}
+
+function CreerLignePanierClient($numTel,$numClient, $BDD){
+        $req = $BDD->query("Select MAX(IdLignePanier) From lignepanier");
+        $numLignePanier = $req->fetch();
+        $numLignePanier[0]++;
+
+        $req = $BDD->query("Select IdPanier From panier where numClient='$numClient';");
+        $IdPanier = $req->fetch();
+        
+        $reponse = $BDD->query("INSERT INTO `lignepanier` (`IdLignePanier`, `IdProduit`, `IdPanier`,`numCommande`,  `quantite`) VALUES
+            ('$numLignePanier[0]', '$numTel', '$IdPanier[0]','NULL', '1');");
+        $donnees = $reponse->fetch();        
+        
+        return $donnees;
+}
+
+function TelsClient($numClient, $BDD){
+    $TelClient = TelClient($numClient, $BDD);
+    
+    for($i=0; $i<$TelClient[1][0]; $i++){
+        if($i==0){
+            $reponse = $BDD->query("select IdProduit, quantite from lignepanier where idPanier='$TelClient[0]' LIMIT 0, 1;");
+            $infosTel[$i] = $reponse->fetch();  
+        } else {
+            $reponse = $BDD->query("select IdProduit, quantite from lignepanier where idPanier='$TelClient[0]' LIMIT $i,$i;");
+            $infosTel[$i] = $reponse->fetch();
+        }
+    }
+    if(isset($infosTel)){
+        return $infosTel;
+    }else{
+        return 1;
+    }
+}
+
+function TelClient($numClient, $BDD){
+    $reponse = $BDD->query("select idPanier from panier where numclient='$numClient';");
+    $donnees = $reponse->fetch();  
+    
+    $reponse = $BDD->query("select count(IdProduit) from lignepanier where IdPanier='$donnees[0]';");
+    $donnees[1] = $reponse->fetch();    
+    return $donnees;
+}
+
+function pointsClient($numClient, $BDD){
+    $reponse = $BDD->query("select Points from client where numclient='$numClient';");
+    $donnees = $reponse->fetch();  ;    
+    return $donnees;
+}
+
+
+function MajQte($quantite, $numTel, $numClient, $BDD ){
+    $reponse = $BDD->query("select quantite from produit where numProduit='$numTel';");
+    $stock = $reponse->fetch(); 
+    
+    if($stock[0]>=$quantite){
+        $reponse = $BDD->query("select idPanier from panier where numclient='$numClient';");
+        $numPanier = $reponse->fetch();  
+    
+        $reponse = $BDD->query("UPDATE `lignepanier` SET quantite='$quantite' where IdProduit='$numTel' AND IdPanier='$numPanier[0]';");
+        $donnees = $reponse->fetch();
+    
+        return $donnees;
+    } else {
+        return $stock[0];
+    }
+}
+
+function supprTelClient($numTel, $numClient, $BDD){
+        $reponse = $BDD->query("select idPanier from panier where numclient='$numClient';");
+        $numPanier = $reponse->fetch(); 
+        
+    $reponse = $BDD->query("DELETE from lignepanier where IdProduit='$numTel' AND IdPanier='$numPanier[0]';");
+    $donnees = $reponse->fetch();  
+    return $donnees;
+}
+
+function MajPointsClient($Points, $numClient, $BDD ){
+    $pointsClient = pointsClient($numClient, $BDD);
+    $NouveauxPoints = $pointsClient[0] + $Points;
+        
+    $reponse = $BDD->query("UPDATE `client` SET Points='$NouveauxPoints' where numclient='$numClient';");
+    $donnees = $reponse->fetch(); 
+  
+    return $donnees;
+}
+
+function AjoutCommande($numClient, $totalCommande, $date, $PanierClient,  $BDD){
+        $req = $BDD->query("Select MAX(idCommande) From commande");
+        $numCommande = $req->fetch();
+        $numCommande[0]++;   
+        
+        $req = $BDD->query("Select IdLignePanier from lignepanier where IdPanier='$PanierClient' and numCommande='NULL';");
+        $IdLignePanier = $req->fetch();
+ 
+        $req = $BDD->query("UPDATE `lignepanier` SET numCommande='$numCommande[0]' where IdLignePanier='$IdLignePanier[0]';");
+        $reponse = $req->fetch();
+        
+    $reponse = $BDD->query("INSERT INTO `commande` (`idCommande`, `confirmationPaiement`, `prix_total`, `dateCommande`, `IdClient`) VALUES
+            ('$numCommande[0]', '0', '$totalCommande','$date', '$numClient');");
+    $donnees = $reponse->fetch(); 
+    $donnees[1]=$numCommande[0];
+    return $donnees;
+}
+
+function MajFacture($commande,  $BDD){
+        $req = $BDD->query("Select MAX(numfacture) From facture");
+        $numfacture = $req->fetch();
+        $numfacture[0]++;    
+        
+    $reponse = $BDD->query("INSERT INTO `facture` (`numFacture`, `idCommande`) VALUES
+            ('$numfacture[0]', '$commande')");
+    $donnees = $reponse->fetch(); 
+    return $donnees;
 }

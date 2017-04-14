@@ -14,10 +14,11 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="col-md-4">
-                                                    <p><?php echo $infosTel[0]?></p>
+                                                    <p>Marque : <?php echo $infosTel[2]?>.</p>
+                                                    <p>Modèle : <?php echo $infosTel[0]?>.</p>
                                                     
                                                     <p>Couleur <?php echo $infosTel[1]?>.</p>
-                                                    <p>Marque : <?php echo $infosTel[2]?>.</p>
+                                                    
                                                     <p>Taille de l'ecran : <?php echo $infosTel[3]?> pouces.</p>
                                                 </div>
                                                 <div class="col-md-4">

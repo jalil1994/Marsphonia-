@@ -45,6 +45,10 @@ switch($nav){
                 break;
 	}
         case 'Panier':{   
+            if(isset($_POST['Quantite'])){
+                $quantite=$_POST['Quantite'];
+                $numTel=$_POST['numTel'];
+            }
 		include("vues/v_Panier.php");
                 break;
 	}
@@ -81,8 +85,8 @@ switch($nav){
 		include("vues/v_FAQ.php");
                 break;
 	}   
-        case 'SmartphonesPlusPopulaires':{  
-		include("vues/v_SmartphonesPlusPopulaires.php");
+        case 'DerniersSmartphones':{  
+		include("vues/v_DerniersSmartphones.php");
                 break;
 	}
         case 'SmartphonesMoinsChers':{   
@@ -151,14 +155,32 @@ switch($nav){
 	}  
         case 'ajouterTelPanier':{  
             $numTel=$_GET['IdTel'];
-            
+            include("include/VerifExistePanierClient.php");
+            break;
+	}  
+        case 'AjoutPromo':{  
+            $numTel=$_GET['IdTel'];
+            $promo = $_POST['Promo'];
+            include("include/AjoutPromo.php");
+            break;
+	}  
+        case 'SupprimerTelClient':{  
+            $numTel=$_GET['IdTel'];
+            $BDD = connexionBDD();
+            supprTelClient($numTel, $_SESSION['numClient'], $BDD);
             include("vues/v_Panier.php");
             break;
-	}        
+	}
+        case 'ValiderPanier':{  
+            $PointsUtiliser=$_POST['PointsUtiliser'];
+            $infosTel=$_SESSION['infosTel'];
+            include("include/ValiderPanier.php");
+            break;
+	}          
 }
     include("vues/v_footer.php");	
 ?>
-
-	</div>
+    
+	
 </body>
 </html>

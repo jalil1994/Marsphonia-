@@ -14,52 +14,44 @@
 						<div class="col-md-4">
 							<a href="index.php?nav=Promo" class="encours" >Promos</a>
 						</div>
-						
-						<div class="col-md-12 hr">
-                                                    <br><br><br>	
-                                                    <hr/>
-						</div>
-					</div>	
+                                                
+                                            </div>
 <!-- _______________________________________________________________________________________________________________ -->
-						<div class="col-md-4">	
-							<p>Promos 1</p>
-						</div>
-						<div class="col-md-4">	
-							<p>Promos 2</p>
-						</div>
-						<div class="col-md-4">	
-							<p>Promos 3</p>
-						</div>
-
-						<div class="col-md-12 hr">
-								<br><br><br>	
-								<hr/>
-						</div>	
-<!-- _______________________________________________________________________________________________________________ -->
-						<div class="col-md-4">	
-							<p>Promos 1</p>
-						</div>
-						<div class="col-md-4">	
-							<p>Promos 2</p>
-						</div>
-						<div class="col-md-4">	
-							<p>Promos 3</p>
-						</div>
-
-						<div class="col-md-12 hr">
-								<br><br><br>	
-								<hr/>
-						</div>	
-<!-- _______________________________________________________________________________________________________________ -->
-						<div class="col-md-4">	
-							<p>Promos 1</p>
-						</div>
-						<div class="col-md-4">	
-							<p>Promos 2</p>
-						</div>
-						<div class="col-md-4">	
-							<p>Promos 3</p>
-						</div>												
-
+                                            <?php 
+                                                $BDD = connexionBDD();
+                                                $TelPromo = TelPromo($BDD);
+                                                for($i=0; $i<sizeof($TelPromo); $i++){
+                                                   $infosTel[$i] = RecupInfoTel($TelPromo[$i][0], $BDD);
+                                                }
+                                            
+                                                for($i=0; $i<sizeof($infosTel);){
+                                                    ?><div class="col-md-12 hr">
+                                                    <br><br><br>
+                                                        <hr/>
+                                                    <!-- _______________________________________________________________________________________________________________ -->                                                    
+                                                    </div> <?php
+                                                    for($j=0; $j<3; $j++){
+                                                        if(isset($infosTel[$i])){
+                                                            ?>
+                                                            <div class="col-md-4">
+                                                                  <a href="index.php?nav=FicheTel&amp;IDTel=<?php echo($infosTel[$i][10]);?>">
+                                                                    <img src="<?php echo $infosTel[$i][9]?>" class="imgFicheTel">
+                                                                    <?php 
+                                                                        $coef = 1 - ($infosTel[$i][11]/100);
+                                                                        $prixBase =  $infosTel[$i][5] / $coef;
+                                                                    ?>
+                                                                    <p><?php echo $infosTel[$i][0]?>, <?php echo $infosTel[$i][2]?> : <span> <s> <?php echo $prixBase?> €</s> </span> - <?php echo $infosTel[$i][11]?>% = <?php echo $infosTel[$i][5]?>€!</p>
+                                                                </a>
+                                                            </div>
+                                                            <?php
+                                                            $i++;
+                                                        } else {
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                                ?>
 					</div>
-				</div>	
+			</div>	
+		</div>
+	</div>
