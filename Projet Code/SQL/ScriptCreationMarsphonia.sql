@@ -42,7 +42,11 @@ CREATE TABLE IF NOT EXISTS `adresse` (
 INSERT INTO `adresse` (`ville`, `pays`, `rue`, `numero_porte`, `Code_Postal`, `numClient`) VALUES
 ('marseille', 'france', '12 rue de labbé', 12, 13005, 1),
 ('marseille', 'france', '62 bis avenue St-Charles', 13, 13003, 2),
-('marseille', 'france', '14 rue castellane', 20, 13006, 3);
+('marseille', 'france', '14 rue castellane', 20, 13006, 3),
+('Paris', 'france', '12 Champs Elysés', 6, 97000, 4),
+('Trets', 'france', '2360 chemin perdu', 2360, 13658, 5),
+('Hyeres', 'france', '486 rue galinette', 486, 83400, 6),
+('La crau', 'france', '25 rue du bled', 25, 83614, 7);
 
 
 -- --------------------------------------------------------
@@ -59,8 +63,6 @@ CREATE TABLE IF NOT EXISTS `client` (
   `prenomClient` varchar(20) DEFAULT NULL,
   `etatCivile` tinyint(1) DEFAULT NULL,
   `num_Tel` int(11) DEFAULT NULL,
-  `numCarteFidelite` int(11) NOT NULL,
-  `IdPanier` int(11) DEFAULT NULL,
   `Points` int(11) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
@@ -68,11 +70,14 @@ CREATE TABLE IF NOT EXISTS `client` (
 -- Contenu de la table `client`
 --
 
-INSERT INTO `client` (`emailClient`, `numClient`, `motdepasse`, `nomClient`, `prenomClient`, `etatCivile`, `num_Tel`, `Points`, `IdPanier`) VALUES
-('ghani@yahoo.fr', 1, '01jan', 'mebarki', 'abdelghani', 1, 781842396, 0, NULL),
-('hakopedro@gmail.com', 2, '01fev', 'kouachi', 'abdeldjallil', 1, 616887831, 0, NULL),
-('stefan@yahoo.fr', 3, '01mars', 'gualandi', 'stefan', 1, 646523990, 0, NULL),
-('admin@yahoo.fr', 4, 'admin', 'admin', 'admin', 1, 123456789, 0, NULL);
+INSERT INTO `client` (`emailClient`, `numClient`, `motdepasse`, `nomClient`, `prenomClient`, `etatCivile`, `num_Tel`, `Points`) VALUES
+('ghani@yahoo.fr', 1, '01jan', 'mebarki', 'abdelghani', 1, 781842396, 20),
+('hakopedro@gmail.com', 2, '01fev', 'kouachi', 'abdeldjallil', 1, 616887831, 40),
+('stefan@yahoo.fr', 3, '01mars', 'gualandi', 'stefan', 1, 646523990, 0),
+('george@yahoo.fr', 5, 'george', 'Dupond', 'george', 1, 0652369874, 0),
+('david@yahoo.fr', 6, 'david', 'Hollande', 'david', 1, 0789451220, 20),
+('francoise@yahoo.fr', 7, 'francoise', 'Melanchon', 'francoise', 0, 0632659845, 0),
+('admin@yahoo.fr', 4, 'admin', 'admin', 'admin', 1, 123456789, 0);
 -- --------------------------------------------------------
 
 --
@@ -84,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `commande` (
   `confirmationPaiement` tinyint(1) DEFAULT NULL,
   `prix_total` int(11) DEFAULT NULL,
   `dateCommande` date DEFAULT NULL,
-  `IdPanier` int(11) DEFAULT NULL
+  `IdClient` int(11) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 
@@ -92,11 +97,17 @@ CREATE TABLE IF NOT EXISTS `commande` (
 -- Contenu de la table `commande`
 --
 
-INSERT INTO `commande` (`idCommande`, `confirmationPaiement`, `prix_total`, `dateCommande`, `IdPanier`) VALUES
-(1, 1, 150, '2017/01/02' 1),
-(2, 0, 200, '2016/03/02' 2),
-(3, 1, 250, '2017/03/02' 3),
-(4, 1, 350, '2017/03/03' 4);
+INSERT INTO `commande` (`idCommande`, `confirmationPaiement`, `prix_total`, `dateCommande`, `IdClient`) VALUES
+(1, 1, 909, '2017-01-02', 1),
+(2, 0, 909, '2016-03-02', 2),
+(3, 1, 450, '2017-03-02', 3),
+(4, 1, 350, '2017-03-30', 4),
+(5, 0, 439, '2017-04-02', 5),
+(6, 1, 668, '2016-01-02', 6),
+(7, 1, 200, '2017-02-22', 7),
+(8, 1, 80, '2017-03-12', 2),
+(9, 0, 250, '2017-04-10', 5),
+(10, 1, 857, '2016-12-25', 3);
 
 -- --------------------------------------------------------
 
@@ -116,8 +127,14 @@ CREATE TABLE IF NOT EXISTS `facture` (
 INSERT INTO `facture` (`numFacture`, `idCommande`) VALUES
 (1, 1),
 (2, 2),
-(3, 3);
-
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9),
+(10, 10);
 -- --------------------------------------------------------
 
 --
@@ -136,7 +153,10 @@ CREATE TABLE IF NOT EXISTS `panier` (
 INSERT INTO `panier` (`IdPanier`, `numClient`) VALUES
 (1, 1),
 (2, 2),
-(3, 3);
+(5, 5),
+(4, 4),
+(6, 6),
+(7, 7);
 
 
 -- --------------------------------------------------------
@@ -148,8 +168,8 @@ INSERT INTO `panier` (`IdPanier`, `numClient`) VALUES
 CREATE TABLE IF NOT EXISTS `LignePanier` (
   `IdLignePanier` int(11) NOT NULL,
   `IdProduit` int(11) NOT NULL,
-  `PrixduProduit` int(11) NOT NULL,
   `IdPanier` int(11) NOT NULL,
+  `numCommande` BIGINT DEFAULT NULL,  
   `quantite` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
@@ -159,10 +179,20 @@ CREATE TABLE IF NOT EXISTS `LignePanier` (
 -- Contenu de la table `LignePanier`
 --
 
-INSERT INTO `LignePanier` (`IdLignePanier`, `IdProduit`, `quantite`, `PrixduProduit`, `IdPanier`) VALUES 
-(1, 2, 3, 200, 3),
-(2, 1, 1, 150, 2),
-(3, 3, 1, 250, 3);
+INSERT INTO `LignePanier` (`IdLignePanier`, `IdProduit`, `quantite`, `IdPanier`, `numCommande`) VALUES 
+(1, 2, 3, 3, NULL),
+(2, 10, 7, 5, NULL),
+(4, 8, 6, 8, NULL),
+(5, 5, 3, 6, NULL),
+(6, 7, 4, 6, NULL),
+(7, 4, 8, 2, NULL),
+(8, 4, 6, 1, NULL),
+(9, 3, 4, 9, NULL),
+(10, 9, 1, 4, NULL),
+(11, 2, 1, 7, NULL),
+(12, 10, 1, 10, NULL),
+(13, 6, 2, 10, NULL),
+(3, 3, 5, 3, NULL);
 
 
 -- --------------------------------------------------------
@@ -175,12 +205,12 @@ CREATE TABLE IF NOT EXISTS `produit` (
   `nomProduit` varchar(25) ,
   `numProduit` int(11) NOT NULL,
   `NombredeVente` int(11) DEFAULT NULL,
-  `promo` double DEFAULT NULL,
+  `promo` int ,
   `Couleur` varchar(25) DEFAULT NULL,
   `Marque` varchar(25) DEFAULT NULL,
   `Ecran` float DEFAULT NULL,
   `editionLimite` int(11) DEFAULT NULL,
-  `prixduproduit` int(11) DEFAULT NULL,
+  `prixduproduit` Double DEFAULT NULL,
   `datesortie` date DEFAULT NULL,
   `quantite` int(11) DEFAULT NULL,
   `foncTexte` longtext
@@ -191,9 +221,16 @@ CREATE TABLE IF NOT EXISTS `produit` (
 --
 
 INSERT INTO `produit` (`nomProduit`,`numProduit`, `NombredeVente`, `promo`, `Couleur`, `Marque`, `Ecran`, `editionLimite`, `prixduproduit`, `datesortie`, `quantite`, `foncTexte`) VALUES
-('Iphone 9', 1, 0, NULL,'rouge', 'Apple', 5.5, 0, 150, '2017-02-01', 58, 'caméra '),
-('Slide', 2, 0, NULL,'rouge', 'Wiko', 7.3, 0, 200, '2017-02-02', 73, 'photos'),
-('S3', 3, 0, 20,'rouge', 'Samsung', 2.5, 500, 250, '2017-02-03', 49, 'camera et photos');
+('Galaxy S8+', 4, 20, 15,'Argenté', 'Samsung', 6.2, 20000, 850, '2017-04-20', 150, 'caméra 12 mégapixels, 8 coeurs, 4Go de RAM, Connexion 4G '),
+('8 Premium', 5, 32, 0,'Or', 'Honor', 5.2, 0, 418, '2017-03-18', 62, 'Processeur 4*2.3Ghz,  Photo 12Mp + Frontal 8Mp,  Wifi,  Bluetooth, Capteur d empreinte digitale, Double SIM '),
+('Galaxy A5', 6, 12, 10,'Bleu', 'Samsung', 5.2, 0, 450, '2016-12-25', 42, 'caméra 16 mégapixels, 1.9 GHz - 8 coeurs, mémoire interne : 32 Go, Android 6.0.1'),
+('K6 Note', 7, 25, 0,'Or', 'Lenovo', 5.5, 150000, 250, '2017-01-01', 74, 'Ecran Full HD IPS, batterie 4000 mAh, 1.4 GHz - 8 coeurs, RAM : 3 Go'),
+('Freddy', 8, 22, 0,'Orange', 'Wiko', 5, 0, 80, '2017-02-10', 150, 'caméra 5 mégapixels, mémoire interne : 8 Go, 1.1 GHz - Quadruple coeur, RAM : 1 Go'),
+('Zenfone Go', 9, 11, 10,'Mauve', 'ASUS', 4.5, 30000, 225, '2017-03-21', 200, 'caméra 13 mégapixels, batterie 2600 mAh, mémoire interne : 16 Go, Quadruple coeur'),
+('U Play', 10, 28, 0,'Noir Nacré', 'HTC', 6.5, 0, 439, '2017-02-23', 124, 'caméra 12 mégapixels, batterie 2600 mAh, 2 GHz - 8 coeurs, Protection : Verre Corning Gorilla'),
+('Slide', 2, 2, 0,'rouge', 'Wiko', 7.3, 0, 200, '2017-02-02', 73, 'photos'),
+('Rainbow', 1, 5, 0,'gris', 'Wiko', 5.3, 0, 174, '2017-03-30', 64, '4G, photo 10 Mp, radio, Bluetooth, appel, sms'),
+('S3', 3, 1, 20,'rouge', 'Samsung', 2.5, 500, 300, '2017-02-03', 49, 'camera et photos');
 
 
 
@@ -216,6 +253,13 @@ CREATE TABLE IF NOT EXISTS `images` (
 INSERT INTO `images` (`idImage`, `idProduit`, `lienImage`) VALUES
 (1, 1, 'img/img1.jpg' ),
 (2, 2, 'img/img2.jpg'),
+(4, 4, 'img/img4.jpg'),
+(5, 5, 'img/img5.jpg'),
+(6, 6, 'img/img6.jpg'),
+(7, 7, 'img/img7.jpg'),
+(8, 8, 'img/img8.jpg'),
+(9, 9, 'img/img9.jpg'),
+(10, 10, 'img/img10.jpg'),
 (3, 3, 'img/img3.jpg');
 
 
