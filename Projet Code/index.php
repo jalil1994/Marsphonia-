@@ -6,20 +6,10 @@ connexionBDD();
 if(!isset($_REQUEST['nav'])){
      $_REQUEST['nav'] = 'Accueil';
 }
+
 $nav = $_REQUEST['nav'];
-?>
+include("vues/v_Entete.php");
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="style/style.css" rel="stylesheet">
-    
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	
-    
-<?php
 if( isset($_SESSION['numClient'])){
     if($_SESSION['numClient'] == 4){
         include('vues/v_headerAdmin.php');                
@@ -29,12 +19,7 @@ if( isset($_SESSION['numClient'])){
 }else{
     include('vues/v_header.php');
 }
-?>
-    
-</head>
-<body>
 
-<?php
 switch($nav){
         case 'Accueil':{   
 		include("vues/v_index.php");
@@ -48,6 +33,15 @@ switch($nav){
             if(isset($_POST['Quantite'])){
                 $quantite=$_POST['Quantite'];
                 $numTel=$_POST['numTel'];
+            }else if(isset($_GET['panier'])){
+            	$panier=$_GET['panier'];
+            	$BDD = connexionBDD();
+            	detruirePanier($panier, $_SESSION['numClient'],$BDD);
+            } else if(isset($_GET['wishlist'])){
+            	$numWishlist=$_GET['wishlist'];
+            	$BDD = connexionBDD();
+            	MajPanier($numWishlist, $_SESSION['numClient'], $BDD);
+            	detruireWishlist($numWishlist, $BDD);
             }
 		include("vues/v_Panier.php");
                 break;
@@ -73,7 +67,10 @@ switch($nav){
 		include("vues/v_Inscription.php");
                 break;
 	}
-        case 'InscriptionClient':{   
+        case 'InscriptionClient':{
+            if(isset($_GET['cas'])){
+                $cas=$_GET['cas'];
+            }
 		include("include/VerifInscription.php");
                 break;
 	} 
@@ -109,11 +106,11 @@ switch($nav){
             }break;
 	}   
         case 'Admin':{   
-		include("vues/v_Admin.php");
+			include("vues/v_Admin.php");
                 break;
 	}       
         case 'AjouterTel':{   
-		include("vues/v_AjoutTel.php");
+			include("vues/v_AjoutTel.php");
                 break;
 	}  
         case 'VerifAjouterTel':{   
@@ -122,13 +119,18 @@ switch($nav){
 	}         
         case 'ModifierTel':{   
                 $numTel=$_GET['IdTel'];
-		include("vues/v_ModifierTel.php");
+				include("vues/v_ModifierTel.php");
                 break;
 	}
+        case 'VerifModifierTel':{
+        	$numTel=$_GET['IdTel'];
+        	include("include/VerifModifierTel.php");
+        	break;
+        }
         case 'SupprimerTel':{   
                 $numTel=$_GET['IdTel'];
                 $BDD = connexionBDD();
-		SupprimerTel($numTel, $BDD);
+				SupprimerTel($numTel, $BDD);
                 include("vues/v_ConsulterTel.php");
                 break;
 	}        
@@ -140,13 +142,21 @@ switch($nav){
 		include("vues/v_ConsulterCommande.php");
                 break;
 	}   
-        case 'Wishlist':{   
+        case 'Wishlist':{
+        	if(isset($_POST['Quantite'])){
+        		$quantiteW=$_POST['Quantite'];
+        		$numTelW=$_POST['numTel'];
+        	}else if(isset($_GET['wishlist'])){
+        		$wishlist=$_GET['wishlist'];
+        		$BDD = connexionBDD();
+        		detruireWishlist($wishlist, $BDD);
+        	}
 		include("vues/v_Wishlist.php");
                 break;
-	}  
+	} 
         case 'FicheTel':{
             $tel=$_GET['IDTel'];
-		include("vues/v_FicheTel.php");
+			include("vues/v_FicheTel.php");
                 break;
 	}
         case 'Contact':{   
@@ -158,6 +168,11 @@ switch($nav){
             include("include/VerifExistePanierClient.php");
             break;
 	}  
+        case 'ajouterTelwishlist':{
+        	$numTel=$_GET['IdTel'];
+        	include("include/VerifExistewishlistClient.php");
+        	break;
+        }
         case 'AjoutPromo':{  
             $numTel=$_GET['IdTel'];
             $promo = $_POST['Promo'];
@@ -171,12 +186,39 @@ switch($nav){
             include("vues/v_Panier.php");
             break;
 	}
+        case 'SupprimerTelClientW':{
+        	$numTel=$_GET['IdTel'];
+        	$BDD = connexionBDD();
+        	supprTelClientW($numTel, $_SESSION['numClient'], $BDD);
+        	include("vues/v_Wishlist.php");
+        	break;
+     }
         case 'ValiderPanier':{  
             $PointsUtiliser=$_POST['PointsUtiliser'];
             $infosTel=$_SESSION['infosTel'];
             include("include/ValiderPanier.php");
+            header('Location: index.php?nav=Accueil');
             break;
-	}          
+	}   
+        case 'Compteclient':{  
+            include("vues/v_CompteClient.php");
+            break;
+	}  
+        case 'InfosPerso':{  
+            $cas='InfosPerso';
+            include("vues/v_CompteClient.php");
+            break;
+	} 
+        case 'CommandeClient':{ 
+            $cas='CommandeClient';
+            include("vues/v_CompteClient.php");
+            break;
+	} 
+        case 'AfficheCommande':{
+        	$idCommande=$_GET['IdCommande'];
+        	include("vues/v_AfficheCommande.php");
+        	break;
+        } 
 }
     include("vues/v_footer.php");	
 ?>

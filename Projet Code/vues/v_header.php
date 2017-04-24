@@ -3,7 +3,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
-							<a href="/Smartphonia/">
+							<a href="index.php?nav=Accueil">
 								<p>Marsphonia</p>
 							</a>
 

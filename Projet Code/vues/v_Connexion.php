@@ -1,7 +1,5 @@
 	
 	<title>Connexion</title>
-	<div id="page">
-		<div id="pagereferences">
 
 			<div id="content">
 				<div class="container">

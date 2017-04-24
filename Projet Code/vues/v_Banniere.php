@@ -1,30 +1,16 @@
 
-  <script src="vues/jquery.js" ></script>			
- <link rel="stylesheet" href="vues/flexslider.css" type="text/css">
-<script src="vues/jquery.flexslider.js"></script>
-<script src="vues/bower_components/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" charset="utf-8" >
-     
-  $(window).load(function() {
-    $('.flexslider').flexslider();
-  });
-</script>
+  <script src="js/jquery.js" ></script>			
+  <script src="js/script.js" ></script>			
+  <link href="style/banniere.css" rel="stylesheet">
 
-<div class="flexslider">
-  <ul class="slides">
-    <li>
-      <img src="vues/r1.jpg" />
-    </li>
-    <li>
-      <img src="vues/r2.jpg"/>
-    </li>
-    <li>
-      <img src="vues/r3.jpeg" />
-    </li>
-    <li>
-      <img src="vues/r4.jpg"/>
-    </li>
-  </ul>
+<div class="col-md-12">
+    
+    <a id="lienBan1" href="index.php?nav=Smartphones">
+        <img id="imgBan1" src="img/imgMoinsCher.jpg" />
+        <img id="imgBan2" src="img/imgNouveaute.jpg" />
+        <img id="imgBan3" src="img/imgPromo.jpg" />
+    </a>  
+    
 </div>
 
 

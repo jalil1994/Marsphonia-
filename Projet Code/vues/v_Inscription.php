@@ -18,7 +18,7 @@
 								<p> <label for="" > Prenom : </label></p>
 								<input type="text" name="Prenom" id="Prenom" size="15" maxlength="30" required >
 									<br><br>
-								<p> <label for="" > Etat civil : </label></p>
+								<p> <label > Etat civil : </label></p>
 								<input type="radio" name="etatCivil" id="etatCivil" value="Homme" checked>Homme&nbsp;&nbsp;&nbsp;
   								<input type="radio" name="etatCivil" id="etatCivil" value="Femme">Femme<br>				
 							</div>	

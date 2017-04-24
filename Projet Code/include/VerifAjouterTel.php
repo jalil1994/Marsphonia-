@@ -14,48 +14,24 @@ $BDD = connexionBDD();
             $marque=$_POST['Marque'];
             $couleur=$_POST['Couleur'];
             $ecran=$_POST['Ecran'];
-            $date=$_POST['DateSortie'];
-            $photo=$_POST['photoTel'];
-            
+            $date=$_POST['DateSortie'];          
             
             if(isset($_POST['editionLimiteO']) ){
                 $nbeditionLimite=$_POST['nbeditionLimite'];           
-                $AjoutTel = AjoutTel($nom, $ecran, $couleur, $marque, $prix, $fonction, $quantite, $nbeditionLimite, $date, $photo, $BDD);
+                $AjoutTel = AjoutTel($nom, $ecran, $couleur, $marque, $prix, $fonction, $quantite, $nbeditionLimite, $date, $BDD);
             } else{
                 $editionLimite = 0;
-                $AjoutTel = AjoutTel($nom, $ecran, $couleur, $marque, $prix, $fonction, $quantite, $editionLimite, $date, $photo, $BDD);
+                $AjoutTel = AjoutTel($nom, $ecran, $couleur, $marque, $prix, $fonction, $quantite, $editionLimite, $date, $BDD);
             }
+            $tel = $AjoutTel;
+
+            include("vues/v_FicheTel.php");
         } else{
-            echo '<script>';
-            echo 'alert("Il existe deja un produit du meme nom !")';
-            echo '</script>';
-            
-            }        
 
+            echo "Il existe deja un produit du meme nom !";
 
-
-        
-        
-        
-        
+            }               
     }else{
             echo " Vous n'etes pas habilité a ajouter un smartphone."   ; 
     }
-            
-
-if($verifExist != false){
-    header('Location: index.php?nav=InscriptionFailed');
-} else {
-    $inscription = inscrire($_POST['Nom'],$_POST['Telephone'], $_POST['Prenom'],$_POST['etatCivil'],$_POST['Mail'],$_POST['MDP'],$BDD);
-    
-    
-    $connexion = connecter($_POST['Mail'],$_REQUEST['MDP'], $BDD);
-    if($connexion != false){
-        $_SESSION['numClient'] = $connexion['numClient'];
-        header('Location: index.php?nav=ClientConnecter');  
-    }else{
-        //?
-        header('Location: index.php?nav=ConnexionFailed');
-    }
-}
 ?>

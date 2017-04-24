@@ -1,4 +1,4 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 4.3.11
 -- http://www.phpmyadmin.net
 --
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `adresse` (
   `ville` varchar(25) DEFAULT NULL,
   `pays` varchar(25) DEFAULT NULL,
   `rue` varchar(25) DEFAULT NULL,
-  `numero_porte` int(11) NOT NULL,
+  `numero_porte` int(11) DEFAULT NULL,
   `Code_Postal` int(11) DEFAULT NULL,
   `numClient` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -63,8 +63,6 @@ CREATE TABLE IF NOT EXISTS `client` (
   `prenomClient` varchar(20) DEFAULT NULL,
   `etatCivile` tinyint(1) DEFAULT NULL,
   `num_Tel` int(11) DEFAULT NULL,
-  `numCarteFidelite` int(11) NOT NULL,
-  `IdPanier` int(11) DEFAULT NULL,
   `Points` int(11) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
@@ -91,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `commande` (
   `confirmationPaiement` tinyint(1) DEFAULT NULL,
   `prix_total` int(11) DEFAULT NULL,
   `dateCommande` date DEFAULT NULL,
-  `IdPanier` int(11) DEFAULT NULL
+  `IdClient` int(11) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 
@@ -99,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `commande` (
 -- Contenu de la table `commande`
 --
 
-INSERT INTO `commande` (`idCommande`, `confirmationPaiement`, `prix_total`, `dateCommande`, `IdPanier`) VALUES
+INSERT INTO `commande` (`idCommande`, `confirmationPaiement`, `prix_total`, `dateCommande`, `IdClient`) VALUES
 (1, 1, 909, '2017-01-02', 1),
 (2, 0, 909, '2016-03-02', 2),
 (3, 1, 450, '2017-03-02', 3),
@@ -107,9 +105,9 @@ INSERT INTO `commande` (`idCommande`, `confirmationPaiement`, `prix_total`, `dat
 (5, 0, 439, '2017-04-02', 5),
 (6, 1, 668, '2016-01-02', 6),
 (7, 1, 200, '2017-02-22', 7),
-(8, 1, 80, '2017-03-12', 8),
-(9, 0, 250, '2017-04-10', 9),
-(10, 1, 857, '2016-12-25', 10);
+(8, 1, 80, '2017-03-12', 2),
+(9, 0, 250, '2017-04-10', 5),
+(10, 1, 857, '2016-12-25', 3);
 
 -- --------------------------------------------------------
 
@@ -156,13 +154,9 @@ INSERT INTO `panier` (`IdPanier`, `numClient`) VALUES
 (1, 1),
 (2, 2),
 (5, 5),
-(8, 4),
-(6, 6),
-(9, 7),
 (4, 4),
-(7, 2),
-(10, 2),
-(3, 3);
+(6, 6),
+(7, 7);
 
 
 -- --------------------------------------------------------
@@ -174,32 +168,38 @@ INSERT INTO `panier` (`IdPanier`, `numClient`) VALUES
 CREATE TABLE IF NOT EXISTS `LignePanier` (
   `IdLignePanier` int(11) NOT NULL,
   `IdProduit` int(11) NOT NULL,
-  `PrixduProduit` int(11) NOT NULL,
   `IdPanier` int(11) NOT NULL,
+  `numCommande` BIGINT DEFAULT NULL,  
   `quantite` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 
-
+INSERT INTO `commande` (`idCommande`, `confirmationPaiement`, `prix_total`, `dateCommande`, `IdClient`) VALUES
+(1, 1, 909, '2017-01-02', 1),
+(2, 0, 909, '2016-03-02', 2),
+(3, 1, 450, '2017-03-02', 3),
+(4, 1, 350, '2017-03-30', 4),
+(5, 0, 439, '2017-04-02', 5),
+(6, 1, 668, '2016-01-02', 6),
+(7, 1, 200, '2017-02-22', 7),
+(8, 1, 80, '2017-03-12', 8),
+(9, 0, 250, '2017-04-10', 9),
+(10, 1, 857, '2016-12-25', 10);
 --
 -- Contenu de la table `LignePanier`
 --
 
-INSERT INTO `LignePanier` (`IdLignePanier`, `IdProduit`, `quantite`, `PrixduProduit`, `IdPanier`) VALUES 
-(1, 2, 3, 200, 3),
-(2, 10, 7, 439, 5),
-(4, 8, 6, 80, 8),
-(5, 5, 3, 418, 6),
-(6, 7, 4, 250, 6),
-(7, 4, 8, 909, 2),
-(8, 4, 6, 909, 1),
-(9, 3, 4, 250, 9),
-(10, 9, 1, 217, 4),
-(11, 2, 1, 200, 7),
-(12, 10, 1, 439, 10),
-(13, 6, 2, 418, 10),
-(3, 3, 5, 250, 3);
-
+INSERT INTO `LignePanier` (`IdLignePanier`, `IdProduit`, `quantite`, `IdPanier`, `numCommande`) VALUES 
+(1, 2, 3, 3, 3),
+(2, 10, 7, 5, 5),
+(4, 8, 6, 8, 8),
+(5, 5, 3, 6, 6),
+(6, 7, 4, 10, 10),
+(7, 4, 8, 2, 2),
+(8, 4, 6, 1, 1),
+(9, 3, 4, 9, 9),
+(10, 9, 1, 4, 4),
+(11, 2, 1, 7, 7);
 
 -- --------------------------------------------------------
 
@@ -227,12 +227,12 @@ CREATE TABLE IF NOT EXISTS `produit` (
 --
 
 INSERT INTO `produit` (`nomProduit`,`numProduit`, `NombredeVente`, `promo`, `Couleur`, `Marque`, `Ecran`, `editionLimite`, `prixduproduit`, `datesortie`, `quantite`, `foncTexte`) VALUES
-('Galaxy S8+', 4, 20, 15,'Argenté', 'Samsung', 6.2, 20000, 1000, '2017-04-20', 150, 'caméra 12 mégapixels, 8 coeurs, 4Go de RAM, Connexion 4G '),
+('Galaxy S8+', 4, 20, 15,'Argenté', 'Samsung', 6.2, 20000, 850, '2017-04-20', 150, 'caméra 12 mégapixels, 8 coeurs, 4Go de RAM, Connexion 4G '),
 ('8 Premium', 5, 32, 0,'Or', 'Honor', 5.2, 0, 418, '2017-03-18', 62, 'Processeur 4*2.3Ghz,  Photo 12Mp + Frontal 8Mp,  Wifi,  Bluetooth, Capteur d empreinte digitale, Double SIM '),
 ('Galaxy A5', 6, 12, 10,'Bleu', 'Samsung', 5.2, 0, 450, '2016-12-25', 42, 'caméra 16 mégapixels, 1.9 GHz - 8 coeurs, mémoire interne : 32 Go, Android 6.0.1'),
 ('K6 Note', 7, 25, 0,'Or', 'Lenovo', 5.5, 150000, 250, '2017-01-01', 74, 'Ecran Full HD IPS, batterie 4000 mAh, 1.4 GHz - 8 coeurs, RAM : 3 Go'),
 ('Freddy', 8, 22, 0,'Orange', 'Wiko', 5, 0, 80, '2017-02-10', 150, 'caméra 5 mégapixels, mémoire interne : 8 Go, 1.1 GHz - Quadruple coeur, RAM : 1 Go'),
-('Zenfone Go', 9, 11, 10,'Mauve', 'ASUS', 4.5, 30000, 250, '2017-03-21', 200, 'caméra 13 mégapixels, batterie 2600 mAh, mémoire interne : 16 Go, Quadruple coeur'),
+('Zenfone Go', 9, 11, 10,'Mauve', 'ASUS', 4.5, 30000, 225, '2017-03-21', 200, 'caméra 13 mégapixels, batterie 2600 mAh, mémoire interne : 16 Go, Quadruple coeur'),
 ('U Play', 10, 28, 0,'Noir Nacré', 'HTC', 6.5, 0, 439, '2017-02-23', 124, 'caméra 12 mégapixels, batterie 2600 mAh, 2 GHz - 8 coeurs, Protection : Verre Corning Gorilla'),
 ('Slide', 2, 2, 0,'rouge', 'Wiko', 7.3, 0, 200, '2017-02-02', 73, 'photos'),
 ('Rainbow', 1, 5, 0,'gris', 'Wiko', 5.3, 0, 174, '2017-03-30', 64, '4G, photo 10 Mp, radio, Bluetooth, appel, sms'),

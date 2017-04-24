@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `adresse` (
   `ville` varchar(25) DEFAULT NULL,
   `pays` varchar(25) DEFAULT NULL,
   `rue` varchar(25) DEFAULT NULL,
-  `numero_porte` int(11) NOT NULL,
+  `numero_porte` int(11) DEFAULT NULL,
   `Code_Postal` int(11) DEFAULT NULL,
   `numClient` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -174,26 +174,32 @@ CREATE TABLE IF NOT EXISTS `LignePanier` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 
-
+INSERT INTO `commande` (`idCommande`, `confirmationPaiement`, `prix_total`, `dateCommande`, `IdClient`) VALUES
+(1, 1, 909, '2017-01-02', 1),
+(2, 0, 909, '2016-03-02', 2),
+(3, 1, 450, '2017-03-02', 3),
+(4, 1, 350, '2017-03-30', 4),
+(5, 0, 439, '2017-04-02', 5),
+(6, 1, 668, '2016-01-02', 6),
+(7, 1, 200, '2017-02-22', 7),
+(8, 1, 80, '2017-03-12', 8),
+(9, 0, 250, '2017-04-10', 9),
+(10, 1, 857, '2016-12-25', 10);
 --
 -- Contenu de la table `LignePanier`
 --
 
 INSERT INTO `LignePanier` (`IdLignePanier`, `IdProduit`, `quantite`, `IdPanier`, `numCommande`) VALUES 
-(1, 2, 3, 3, NULL),
-(2, 10, 7, 5, NULL),
-(4, 8, 6, 8, NULL),
-(5, 5, 3, 6, NULL),
-(6, 7, 4, 6, NULL),
-(7, 4, 8, 2, NULL),
-(8, 4, 6, 1, NULL),
-(9, 3, 4, 9, NULL),
-(10, 9, 1, 4, NULL),
-(11, 2, 1, 7, NULL),
-(12, 10, 1, 10, NULL),
-(13, 6, 2, 10, NULL),
-(3, 3, 5, 3, NULL);
-
+(1, 2, 3, 3, 3),
+(2, 10, 7, 5, 5),
+(4, 8, 6, 8, 8),
+(5, 5, 3, 6, 6),
+(6, 7, 4, 10, 10),
+(7, 4, 8, 2, 2),
+(8, 4, 6, 1, 1),
+(9, 3, 4, 9, 9),
+(10, 9, 1, 4, 4),
+(11, 2, 1, 7, 7);
 
 -- --------------------------------------------------------
 

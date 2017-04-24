@@ -7,12 +7,15 @@
         }
         $TelsClient = TelsClient($_SESSION['numClient'], $BDD);
         $pointsClient = pointsClient($_SESSION['numClient'], $BDD);
+        $adresseClient = testAdresse($_SESSION['numClient'], $BDD);
         if($TelsClient != 1){
             for($i=0; $i<sizeof($TelsClient); $i++){
                 $infosTel[$i] = RecupInfoTel($TelsClient[$i][0], $BDD);
             }
-
+            $PanierClient = VerifExistePanierClient($_SESSION['numClient'], $BDD);
     ?>
+   
+<a href="index.php?nav=Panier&amp;panier=<?php echo($PanierClient[0]);?>">Vider mon panier</a>
     
 <table  border="1" align="center" cellspacing="20" cellpadding="20" class="col-md-12">
     
@@ -31,7 +34,7 @@ for($i=0; $i<sizeof($infosTel); $i++) {
   
     <tr>
       <td ><?php echo($infosTel[$i][2]);?></td>
-      <td ><?php echo($infosTel[$i][0]);?></td>
+      <td ><a href="index.php?nav=FicheTel&amp;IDTel=<?php echo($infosTel[$i][0]);?>"><?php echo($infosTel[$i][0]);?></a></td>
       <td ><?php echo($infosTel[$i][5]);?></td>
       <td ><?php
         if(isset($quantite) && $numTel ==$infosTel[$i][10] ){
@@ -55,23 +58,33 @@ for($i=0; $i<sizeof($infosTel); $i++) {
       <?php 
       
   }
-  $PointsGagner = $total/10;
-  $infosTel[12]=$total;
-  $_SESSION['infosTel']=$infosTel;
+
   ?>
  </table> 
-    
-    <p>Total : <?php echo($total)?> €.</p>
-    <p>Cette commande vous rapporte : <?php echo($PointsGagner)?> points de fidelité.</p>
-    <p>Vous disposez actuellement de : <?php echo($pointsClient[0])?> points de fidelité (1 point = 1€).</p>
-    <p>Combien de points souhaiter utiliser pour cette commande ?</p>
-    <form method="post" id="FormValiderPanier" action="index.php?nav=ValiderPanier">
-        <input type="number" name="PointsUtiliser" id="PointsUtiliser" size="10">
-        <input type="submit" name="FormValiderPanier" id="FormValiderPanier" value="Valider le panier et payer la commande">
-    </form>
     <?php 
-        } else {
-            ?> <p> Votre panier est vide ! </p> <?php 
-        }  
-         ?>
+        } 
+      if($adresseClient && $TelsClient != 1){
+      	$PointsGagner = $total/10;
+      	$infosTel[12]=$total;
+      	$_SESSION['infosTel']=$infosTel;
+      	?>
+	    <p>Total : <?php echo($total)?> €.</p>
+	    <p>Cette commande vous rapporte : <?php echo($PointsGagner)?> points de fidelité.</p>
+	    <p>Vous disposez actuellement de : <?php echo($pointsClient[0])?> points de fidelité (1 point = 1€).</p>
+	    <p>Combien de points souhaiter utiliser pour cette commande ?</p>
+	    <form method="post" id="FormValiderPanier" action="index.php?nav=ValiderPanier">
+	        <input type="number" name="PointsUtiliser" id="PointsUtiliser" size="10">
+	        <input type="submit" name="FormValiderPanier" id="FormValiderPanier" value="Valider le panier et payer la commande">
+	    </form>      	
+      <?php
+      } else if($TelsClient == 1){
+   		?>
+   		<p> Votre panier est vide ! </p>
+      <?php 
+      } else {
+      		?>
+   		<a href="index.php?nav=InfosPerso&amp;cas=InfosPerso">Veuillez renseigner une adresse de livraison</a>
+      <?php 
+      }
+  ?>          
 </div>
